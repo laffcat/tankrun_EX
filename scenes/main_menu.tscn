@@ -1,0 +1,205 @@
+[gd_scene load_steps=32 format=3 uid="uid://dqivb1d6808ab"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_1oeix"]
+[ext_resource type="Texture2D" uid="uid://cjol4es857po1" path="res://sprites/menu/main_btn_play.png" id="1_wn5it"]
+[ext_resource type="AudioStream" uid="uid://btf6p2c2pp37d" path="res://sounds/Music/Pallet_color_Game_Jam_theme_130bpm.wav" id="2_piql3"]
+[ext_resource type="AudioStream" uid="uid://1qwrwg5idgoy" path="res://sounds/SFX/UI_SFX/boop1.wav" id="2_v4ylg"]
+[ext_resource type="AudioStream" uid="uid://66vm8xg8qm7y" path="res://sounds/SFX/UI_SFX/boop2.wav" id="3_dxr6h"]
+[ext_resource type="Texture2D" uid="uid://bhk4db44cfl6y" path="res://sprites/menu/main_btn_credits.png" id="3_fv1x8"]
+[ext_resource type="AudioStream" uid="uid://b3jlawrumt4k8" path="res://sounds/SFX/UI_SFX/boop3.wav" id="4_5wm8b"]
+[ext_resource type="Texture2D" uid="uid://cdn5dsp7rnotg" path="res://sprites/menu/main_deco_runner.png" id="4_jmd3q"]
+[ext_resource type="Script" path="res://scenes/menu_title.gd" id="5_877jm"]
+[ext_resource type="AudioStream" uid="uid://b6i3xtr00p8el" path="res://sounds/SFX/UI_SFX/ui_sfx_select1.wav" id="5_vjdfq"]
+[ext_resource type="Script" path="res://scripts/misc/tilty_sprite.gd" id="5_x1y1h"]
+[ext_resource type="Script" path="res://scripts/menu_button.gd" id="6_0a46f"]
+[ext_resource type="Texture2D" uid="uid://cg7fq4oklxnc7" path="res://sprites/menu/main_deco_tank.png" id="6_kba0c"]
+[ext_resource type="AudioStream" uid="uid://dr1i0xb45sx26" path="res://sounds/SFX/UI_SFX/ui_sfx_select2.wav" id="6_lu7k3"]
+[ext_resource type="AudioStream" uid="uid://ct58110pmpvyx" path="res://sounds/SFX/UI_SFX/ui_sfx_select3.wav" id="7_hrgm8"]
+[ext_resource type="Texture2D" uid="uid://bf0et8cc4j35b" path="res://sprites/menu/main_title.png" id="7_lsqjp"]
+[ext_resource type="Texture2D" uid="uid://bwrc5md3xw406" path="res://sprites/menu/main_btn_back.png" id="8_sd6as"]
+[ext_resource type="AudioStream" uid="uid://bhkwck3jv8bna" path="res://sounds/SFX/UI_SFX/ui_sfx_confirm.wav" id="8_tyrju"]
+[ext_resource type="Script" path="res://scenes/menu_options.gd" id="11_8shur"]
+[ext_resource type="Script" path="res://scenes/menu_credits.gd" id="13_62rk0"]
+[ext_resource type="Texture2D" uid="uid://bj2e3jlgis2sw" path="res://sprites/menu/main_jam_logo.png" id="13_gd5lq"]
+[ext_resource type="Texture2D" uid="uid://cp0qult1djcol" path="res://sprites/menu/credits/itch.png" id="22_rkxlk"]
+[ext_resource type="Texture2D" uid="uid://dmta5tnrhhcvw" path="res://sprites/menu/credits/filipe.png" id="23_a3k6d"]
+[ext_resource type="Texture2D" uid="uid://be80qx2m1wbde" path="res://sprites/menu/credits/lance.png" id="24_46dqk"]
+[ext_resource type="Texture2D" uid="uid://bsufe634yxh67" path="res://sprites/menu/credits/lam.png" id="25_7tnlx"]
+[ext_resource type="Texture2D" uid="uid://21cf61je6qkr" path="res://sprites/menu/credits/assets_header.png" id="26_uxrrg"]
+[ext_resource type="Texture2D" uid="uid://sgpjkarplu4t" path="res://sprites/menu/credits/assets1.png" id="27_svdnn"]
+[ext_resource type="Texture2D" uid="uid://bwwx2ae1vbpeu" path="res://sprites/menu/credits/assets2.png" id="28_uu3qa"]
+[ext_resource type="Texture2D" uid="uid://dfdtwbhinyqwq" path="res://sprites/menu/credits/assets3.png" id="29_55oyt"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5kl0e"]
+streams_count = 3
+stream_0/stream = ExtResource("2_v4ylg")
+stream_1/stream = ExtResource("3_dxr6h")
+stream_2/stream = ExtResource("4_5wm8b")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xr1lq"]
+random_pitch = 1.02
+streams_count = 3
+stream_0/stream = ExtResource("5_vjdfq")
+stream_1/stream = ExtResource("6_lu7k3")
+stream_2/stream = ExtResource("7_hrgm8")
+
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("submenus")]
+script = ExtResource("1_1oeix")
+submenus = [NodePath("MenuTitle"), NodePath("MenuOptions"), NodePath("MenuCredits")]
+color_unselected = Color(0.129412, 0.631373, 0.47451, 1)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_piql3")
+volume_db = -9.0
+autoplay = true
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Boop" type="AudioStreamPlayer" parent="SFX"]
+stream = SubResource("AudioStreamRandomizer_5kl0e")
+volume_db = -8.376
+
+[node name="DingSmall" type="AudioStreamPlayer" parent="SFX"]
+stream = SubResource("AudioStreamRandomizer_xr1lq")
+volume_db = -6.264
+pitch_scale = 0.94
+
+[node name="DingBig" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("8_tyrju")
+volume_db = -4.026
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 480.0
+offset_bottom = 320.0
+color = Color(0.14902, 0.329412, 0.486275, 1)
+
+[node name="MainDecoRunner" type="Sprite2D" parent="."]
+position = Vector2(408, 248)
+rotation = 0.0998906
+texture = ExtResource("4_jmd3q")
+script = ExtResource("5_x1y1h")
+tilt_mult = 0.1
+time_mult = 2.0
+
+[node name="MainDecoTank" type="Sprite2D" parent="."]
+position = Vector2(88, 248)
+rotation = -0.0998906
+texture = ExtResource("6_kba0c")
+script = ExtResource("5_x1y1h")
+tilt_mult = -0.1
+time_mult = 2.0
+
+[node name="MenuTitle" type="Node2D" parent="."]
+script = ExtResource("5_877jm")
+
+[node name="MainJamLogo" type="Sprite2D" parent="MenuTitle"]
+position = Vector2(416, 56)
+rotation = 0.394158
+texture = ExtResource("13_gd5lq")
+script = ExtResource("5_x1y1h")
+tilt_mult = 0.4
+time_mult = 0.6
+
+[node name="MainTitle" type="Sprite2D" parent="MenuTitle"]
+position = Vector2(240, 104)
+texture = ExtResource("7_lsqjp")
+
+[node name="MainBtnPlay" type="Sprite2D" parent="MenuTitle" node_paths=PackedStringArray("up", "down")]
+position = Vector2(256, 208)
+texture = ExtResource("1_wn5it")
+script = ExtResource("6_0a46f")
+btn_name = "Play"
+up = NodePath("../MainBtnCredits")
+down = NodePath("../MainBtnCredits")
+
+[node name="MainBtnCredits" type="Sprite2D" parent="MenuTitle" node_paths=PackedStringArray("up", "down")]
+modulate = Color(0.129412, 0.631373, 0.47451, 1)
+position = Vector2(256, 248)
+texture = ExtResource("3_fv1x8")
+script = ExtResource("6_0a46f")
+btn_name = "Credits"
+up = NodePath("../MainBtnPlay")
+down = NodePath("../MainBtnPlay")
+
+[node name="MenuOptions" type="Node2D" parent="."]
+visible = false
+script = ExtResource("11_8shur")
+
+[node name="MainBtnBack" type="Sprite2D" parent="MenuOptions"]
+modulate = Color(0.129412, 0.631373, 0.47451, 1)
+position = Vector2(96, 160)
+texture = ExtResource("8_sd6as")
+script = ExtResource("6_0a46f")
+
+[node name="MenuCredits" type="Node2D" parent="."]
+visible = false
+script = ExtResource("13_62rk0")
+
+[node name="Itch" type="Sprite2D" parent="MenuCredits"]
+position = Vector2(416, 48)
+texture = ExtResource("22_rkxlk")
+
+[node name="Back" type="Sprite2D" parent="MenuCredits" node_paths=PackedStringArray("up", "down", "right")]
+modulate = Color(0.129412, 0.631373, 0.47451, 1)
+position = Vector2(88, 120)
+texture = ExtResource("8_sd6as")
+script = ExtResource("6_0a46f")
+up = NodePath("../Filipe")
+down = NodePath("../Lam")
+right = NodePath("../Lance")
+
+[node name="Filipe" type="Sprite2D" parent="MenuCredits" node_paths=PackedStringArray("up", "down", "left")]
+modulate = Color(0.129412, 0.631373, 0.47451, 1)
+position = Vector2(258, 56)
+texture = ExtResource("23_a3k6d")
+script = ExtResource("6_0a46f")
+up = NodePath("../Assets3")
+down = NodePath("../Lance")
+left = NodePath("../Back")
+
+[node name="Lance" type="Sprite2D" parent="MenuCredits" node_paths=PackedStringArray("up", "down", "left")]
+modulate = Color(0.129412, 0.631373, 0.47451, 1)
+position = Vector2(258, 112)
+texture = ExtResource("24_46dqk")
+script = ExtResource("6_0a46f")
+up = NodePath("../Filipe")
+down = NodePath("../Lam")
+left = NodePath("../Back")
+
+[node name="Lam" type="Sprite2D" parent="MenuCredits" node_paths=PackedStringArray("up", "down", "left")]
+modulate = Color(0.129412, 0.631373, 0.47451, 1)
+position = Vector2(258, 168)
+texture = ExtResource("25_7tnlx")
+script = ExtResource("6_0a46f")
+up = NodePath("../Lance")
+down = NodePath("../Assets1")
+left = NodePath("../Back")
+
+[node name="AssetsHeader" type="Sprite2D" parent="MenuCredits"]
+modulate = Color(0.129412, 0.631373, 0.47451, 1)
+position = Vector2(256, 248)
+texture = ExtResource("26_uxrrg")
+
+[node name="Assets1" type="Sprite2D" parent="MenuCredits" node_paths=PackedStringArray("up", "down")]
+modulate = Color(0.129412, 0.631373, 0.47451, 1)
+position = Vector2(256, 264)
+texture = ExtResource("27_svdnn")
+script = ExtResource("6_0a46f")
+up = NodePath("../Lam")
+down = NodePath("../Assets2")
+
+[node name="Assets2" type="Sprite2D" parent="MenuCredits" node_paths=PackedStringArray("up", "down")]
+modulate = Color(0.129412, 0.631373, 0.47451, 1)
+position = Vector2(256, 280)
+texture = ExtResource("28_uu3qa")
+script = ExtResource("6_0a46f")
+up = NodePath("../Assets1")
+down = NodePath("../Assets3")
+
+[node name="Assets3" type="Sprite2D" parent="MenuCredits" node_paths=PackedStringArray("up", "down")]
+modulate = Color(0.129412, 0.631373, 0.47451, 1)
+position = Vector2(256, 296)
+texture = ExtResource("29_55oyt")
+script = ExtResource("6_0a46f")
+up = NodePath("../Assets2")
+down = NodePath("../Filipe")

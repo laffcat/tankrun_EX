@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dj2w2e4oam4c6"]
+
+[ext_resource type="Texture2D" uid="uid://dmedey8tqi6pr" path="res://sprites/topdown/player/tank_base.png" id="1_cm6mw"]
+[ext_resource type="Script" path="res://scripts/top/player/player_top.gd" id="1_lgi77"]
+[ext_resource type="Texture2D" uid="uid://c1pdyumyh4jxy" path="res://sprites/topdown/player/tank_top2.png" id="2_boecl"]
+[ext_resource type="Texture2D" uid="uid://bgslk3o2chisa" path="res://sprites/topdown/player/tank_top1.png" id="3_de8fb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k116f"]
+radius = 9.0
+
+[node name="PlayerTopDown" type="CharacterBody2D"]
+collision_mask = 6
+motion_mode = 1
+script = ExtResource("1_lgi77")
+
+[node name="SprTankBase" type="Sprite2D" parent="."]
+texture = ExtResource("1_cm6mw")
+hframes = 2
+
+[node name="TankTop" type="Node2D" parent="."]
+
+[node name="SprTankBarrel" type="Sprite2D" parent="TankTop"]
+position = Vector2(15, 0)
+texture = ExtResource("2_boecl")
+hframes = 2
+
+[node name="SprTankHead" type="Sprite2D" parent="TankTop"]
+texture = ExtResource("3_de8fb")
+offset = Vector2(0.5, 0)
+hframes = 2
+
+[node name="BulletSpawn" type="Node2D" parent="TankTop"]
+position = Vector2(24, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k116f")

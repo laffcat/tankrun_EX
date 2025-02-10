@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ibb6ln7ea215"]
+
+[ext_resource type="Script" path="res://bitFolder/spawner_new.gd" id="1_jwgxq"]
+[ext_resource type="PackedScene" uid="uid://bbapjyvsg0fyy" path="res://bitFolder/bat.tscn" id="2_eodgn"]
+
+[node name="Spawner" type="Node2D"]
+script = ExtResource("1_jwgxq")
+enemy = ExtResource("2_eodgn")
+spawn_delay = 3.2

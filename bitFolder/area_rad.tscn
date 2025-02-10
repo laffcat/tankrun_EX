@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfe3vtxk3biiq"]
+
+[ext_resource type="Script" path="res://bitFolder/area_rad.gd" id="1_ltocf"]
+
+[node name="AreaRad" type="Area2D"]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_ltocf")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

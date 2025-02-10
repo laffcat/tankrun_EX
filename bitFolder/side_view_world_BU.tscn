@@ -1,0 +1,172 @@
+[gd_scene load_steps=19 format=4 uid="uid://vmagce3e2bhr"]
+
+[ext_resource type="Script" path="res://bitFolder/side_view_world.gd" id="1_xj74w"]
+[ext_resource type="PackedScene" uid="uid://fq5j5ue73imq" path="res://bitFolder/LevelParts/tile_map_end2.tscn" id="2_3wj0d"]
+[ext_resource type="PackedScene" uid="uid://ds81kwvvoaahf" path="res://bitFolder/LevelParts/tile_map1.tscn" id="3_hkhuw"]
+[ext_resource type="PackedScene" uid="uid://vyxg8q6h3cbb" path="res://bitFolder/LevelParts/tile_map2.tscn" id="4_lpvhj"]
+[ext_resource type="PackedScene" uid="uid://cvs4br64et2ux" path="res://bitFolder/LevelParts/tile_map3.tscn" id="5_s8nwx"]
+[ext_resource type="PackedScene" uid="uid://d21he68618l4" path="res://bitFolder/LevelParts/tile_map4.tscn" id="6_sqpj4"]
+[ext_resource type="PackedScene" uid="uid://b8dvlshdnxaui" path="res://bitFolder/LevelParts/tile_map5.tscn" id="7_1bwit"]
+[ext_resource type="PackedScene" uid="uid://c7qtunqn5jhkm" path="res://bitFolder/LevelParts/tile_map6.tscn" id="8_ed7lm"]
+[ext_resource type="PackedScene" uid="uid://blqnbweumcaup" path="res://bitFolder/LevelParts/tile_map_layer0.tscn" id="9_28vdc"]
+[ext_resource type="PackedScene" uid="uid://bc08gr3ma0glj" path="res://bitFolder/side_character.tscn" id="10_i5cvf"]
+[ext_resource type="PackedScene" uid="uid://ibb6ln7ea215" path="res://bitFolder/spawner_new.tscn" id="11_xaint"]
+[ext_resource type="PackedScene" uid="uid://dfe3vtxk3biiq" path="res://bitFolder/area_rad.tscn" id="12_b6432"]
+[ext_resource type="PackedScene" uid="uid://c5fxcs8ic03bd" path="res://bitFolder/exit_point.tscn" id="13_m83p7"]
+[ext_resource type="PackedScene" uid="uid://cdu14b4vpdt3x" path="res://scenes/top/game_topdown.tscn" id="14_vhfv8"]
+[ext_resource type="PackedScene" uid="uid://bkn8idh1nrk0l" path="res://bitFolder/ui.tscn" id="15_4al4v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a2fsf"]
+size = Vector2(456, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qw6c1"]
+size = Vector2(456, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dym5n"]
+size = Vector2(456, 16)
+
+[node name="SideViewWorld" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_xj74w")
+
+[node name="Tint" type="Node2D" parent="."]
+
+[node name="TileMapEnd" parent="Tint" instance=ExtResource("2_3wj0d")]
+position = Vector2(-1432, 0)
+
+[node name="TileDepo" type="Node2D" parent="Tint"]
+position = Vector2(-912, 0)
+
+[node name="TileMapLayer2" parent="Tint/TileDepo" instance=ExtResource("3_hkhuw")]
+
+[node name="TileMapLayer1" parent="Tint/TileDepo" instance=ExtResource("4_lpvhj")]
+
+[node name="TileMapLayer3" parent="Tint/TileDepo" instance=ExtResource("5_s8nwx")]
+
+[node name="TileMapLayer4" parent="Tint/TileDepo" instance=ExtResource("6_sqpj4")]
+
+[node name="TileMapLayer5" parent="Tint/TileDepo" instance=ExtResource("7_1bwit")]
+
+[node name="TileMapLayer6" parent="Tint/TileDepo" instance=ExtResource("8_ed7lm")]
+
+[node name="TileMaps" type="Node2D" parent="Tint"]
+
+[node name="TileMapLayer" parent="Tint/TileMaps" instance=ExtResource("9_28vdc")]
+tile_map_data = PackedByteArray("AAAAAAoAAAABAAAAAAABAAoAAAABAAAAAAACAAoAAAABAAAAAAADAAoAAAABAAAAAAAEAAoAAAABAAAAAAAFAAoAAAABAAAAAAAGAAoAAAABAAAAAAAHAAoAAAABAAAAAAAIAAoAAAABAAAAAAAJAAoAAAABAAAAAAAKAAoAAAABAAAAAAALAAoAAAABAAAAAAAMAAoAAAABAAAAAAANAAoAAAABAAAAAAAOAAoAAAABAAAAAAAPAAoAAAABAAAAAAAQAAoAAAABAAAAAAARAAoAAAABAAAAAAASAAoAAAABAAAAAAATAAoAAAABAAAAAAAUAAoAAAABAAAAAAAIAAUAAAAAAAMAAAAJAAUAAAABAAMAAAAKAAUAAAABAAMAAAAdAAoAAAABAAAAAAAcAAoAAAABAAAAAAAbAAoAAAABAAAAAAAaAAoAAAABAAAAAAAZAAoAAAABAAAAAAAYAAoAAAABAAAAAAAXAAoAAAABAAAAAAAWAAoAAAABAAAAAAAVAAoAAAABAAAAAAD//woAAAABAAAAAAD+/woAAAABAAAAAAD9/woAAAABAAAAAAD8/woAAAABAAAAAAD7/woAAAABAAAAAAD6/woAAAABAAAAAAD5/woAAAABAAAAAAD4/woAAAABAAAAAAD3/woAAAABAAAAAAD2/woAAAABAAAAAAD1/woAAAABAAAAAAD0/woAAAABAAAAAADz/woAAAABAAAAAADy/woAAAABAAAAAAD0/wkAAAACAAEAAAD0/wgAAAACAAEAAAD0/wcAAAACAAEAAAD0/wYAAAACAAEAAAD0/wUAAAACAAEAAAD0/wQAAAACAAEAAAD0/wMAAAACAAEAAAD0/wIAAAACAAEAAAD0/wEAAAACAAEAAAD0/wAAAAACAAEAAAD0////AAACAAEAAAD0//7/AAACAAEAAAD0//3/AAACAAEAAAD0//z/AAACAAAAAADz//z/AAABAAAAAADy//z/AAABAAAAAADx//z/AAABAAAAAADw//z/AAABAAAAAADw//3/AAABAAEAAADw//7/AAABAAEAAADw////AAABAAEAAADx/wAAAAABAAEAAADx/wEAAAABAAEAAADx/wIAAAABAAEAAADx/wMAAAABAAEAAADy/wQAAAABAAEAAADy/wUAAAABAAEAAADy/wYAAAABAAEAAADw/wAAAAABAAEAAADw/wEAAAABAAEAAADw/wIAAAABAAEAAADw/wMAAAABAAEAAADw/wQAAAABAAEAAADw/wUAAAABAAEAAADw/wYAAAABAAEAAADw/wcAAAABAAEAAADw/wgAAAABAAEAAADw/wkAAAABAAEAAADx//3/AAABAAEAAADx//7/AAABAAEAAADx////AAABAAEAAADx/wQAAAABAAEAAADx/wUAAAABAAEAAADx/wYAAAABAAEAAADx/wcAAAABAAEAAADx/wgAAAABAAEAAADx/wkAAAABAAEAAADy//3/AAABAAEAAADy//7/AAABAAEAAADy////AAABAAEAAADy/wAAAAABAAEAAADy/wEAAAABAAEAAADy/wIAAAABAAEAAADy/wMAAAABAAEAAADy/wcAAAABAAEAAADy/wgAAAABAAEAAADy/wkAAAABAAEAAADz//3/AAABAAEAAADz//7/AAABAAEAAADz////AAABAAEAAADz/wAAAAABAAEAAADz/wEAAAABAAEAAADz/wIAAAABAAEAAADz/wMAAAABAAEAAADz/wQAAAABAAEAAADz/wUAAAABAAEAAADz/wYAAAABAAEAAADz/wcAAAABAAEAAADz/wgAAAABAAEAAADz/wkAAAABAAEAAADv/woAAAABAAAAAADw/woAAAABAAAAAADx/woAAAABAAAAAAD3/wgAAAAAAAMAAAD4/wgAAAABAAMAAAD5/wgAAAACAAMAAAD9/wcAAAAAAAMAAAD+/wcAAAABAAMAAAD//wcAAAACAAMAAAADAAYAAAAAAAMAAAAEAAYAAAABAAMAAAAFAAYAAAACAAMAAAALAAUAAAACAAMAAAAIAAgAAAAAAAAAAAAIAAkAAAAAAAEAAAAJAAgAAAABAAAAAAAJAAkAAAABAAEAAAAKAAgAAAACAAAAAAAKAAkAAAACAAEAAAD1/wUAAAABAAAAAAD2/wUAAAACAAAAAAD2/wYAAAACAAEAAAD2/wcAAAACAAEAAAD2/wgAAAACAAEAAAD2/wkAAAACAAEAAAD1/wYAAAABAAEAAAD1/wcAAAABAAEAAAD1/wgAAAABAAEAAAD1/wkAAAABAAEAAAANAAIAAAAAAAMAAAAOAAIAAAABAAMAAAAPAAIAAAACAAMAAAAAAAEAAAAEAAAAAAACAAIAAAAEAAAAAAD+////AAAEAAAAAAAGAAIAAAAAAAMAAAAHAAIAAAACAAMAAAA=")
+
+[node name="SideCharacter" parent="Tint" instance=ExtResource("10_i5cvf")]
+position = Vector2(-160, -8)
+
+[node name="Camera2D" type="Camera2D" parent="Tint/SideCharacter"]
+limit_top = -400
+limit_bottom = 200
+
+[node name="ColorRect" type="ColorRect" parent="Tint/SideCharacter/Camera2D"]
+z_index = -1
+offset_left = -387.0
+offset_top = -622.0
+offset_right = 353.0
+offset_bottom = 498.0
+color = Color(0, 0, 0, 1)
+
+[node name="SpawnerGroup" type="Node2D" parent="Tint"]
+
+[node name="Spawner" parent="Tint/SpawnerGroup" instance=ExtResource("11_xaint")]
+position = Vector2(240, 152)
+
+[node name="Spawner2" parent="Tint/SpawnerGroup" instance=ExtResource("11_xaint")]
+position = Vector2(240, 120)
+
+[node name="Spawner3" parent="Tint/SpawnerGroup" instance=ExtResource("11_xaint")]
+position = Vector2(240, 88)
+
+[node name="Spawner4" parent="Tint/SpawnerGroup" instance=ExtResource("11_xaint")]
+position = Vector2(240, 56)
+
+[node name="Spawner5" parent="Tint/SpawnerGroup" instance=ExtResource("11_xaint")]
+position = Vector2(240, 24)
+
+[node name="Spawner6" parent="Tint/SpawnerGroup" instance=ExtResource("11_xaint")]
+position = Vector2(240, -8)
+
+[node name="Spawner7" parent="Tint/SpawnerGroup" instance=ExtResource("11_xaint")]
+position = Vector2(240, -40)
+
+[node name="Spawner8" parent="Tint/SpawnerGroup" instance=ExtResource("11_xaint")]
+position = Vector2(320, 152)
+
+[node name="Spawner9" parent="Tint/SpawnerGroup" instance=ExtResource("11_xaint")]
+position = Vector2(368, 152)
+
+[node name="Spawner11" parent="Tint/SpawnerGroup" instance=ExtResource("11_xaint")]
+position = Vector2(456, 152)
+
+[node name="Spawner10" parent="Tint/SpawnerGroup" instance=ExtResource("11_xaint")]
+position = Vector2(320, 120)
+
+[node name="PlayerFollower" type="Node2D" parent="Tint"]
+position = Vector2(-160, 136)
+
+[node name="AreaRad" parent="Tint/PlayerFollower" instance=ExtResource("12_b6432")]
+position = Vector2(0, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tint/PlayerFollower/AreaRad"]
+position = Vector2(4, -26)
+shape = SubResource("RectangleShape2D_a2fsf")
+
+[node name="ColorRect2" type="ColorRect" parent="Tint/PlayerFollower/AreaRad"]
+z_index = -1
+offset_left = -224.0
+offset_top = -54.0
+offset_right = 232.0
+offset_bottom = 2.0
+size_flags_horizontal = 4
+color = Color(0, 0.988235, 0.952941, 1)
+
+[node name="AreaRad2" parent="Tint/PlayerFollower" instance=ExtResource("12_b6432")]
+position = Vector2(0, 24)
+rad = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tint/PlayerFollower/AreaRad2"]
+position = Vector2(4, -18)
+shape = SubResource("RectangleShape2D_qw6c1")
+
+[node name="ColorRect3" type="ColorRect" parent="Tint/PlayerFollower/AreaRad2"]
+z_index = -1
+offset_left = -224.0
+offset_top = -38.0
+offset_right = 232.0
+offset_bottom = 2.0
+color = Color(0.129412, 0.631373, 0.47451, 1)
+
+[node name="AreaRad3" parent="Tint/PlayerFollower" instance=ExtResource("12_b6432")]
+position = Vector2(0, 24)
+rad = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tint/PlayerFollower/AreaRad3"]
+position = Vector2(4, -6)
+shape = SubResource("RectangleShape2D_dym5n")
+
+[node name="ColorRect4" type="ColorRect" parent="Tint/PlayerFollower/AreaRad3"]
+z_index = -1
+offset_left = -224.0
+offset_top = -14.0
+offset_right = 232.0
+offset_bottom = 2.0
+color = Color(0.14902, 0.329412, 0.486275, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Tint/PlayerFollower"]
+offset_left = -232.0
+offset_top = 32.0
+offset_right = 240.0
+offset_bottom = 96.0
+color = Color(0, 0, 0, 1)
+
+[node name="Exit_point" parent="." instance=ExtResource("13_m83p7")]
+position = Vector2(-160, 63)
+next_level = ExtResource("14_vhfv8")
+required_inv = 50
+
+[node name="UI" parent="." instance=ExtResource("15_4al4v")]
+
+[connection signal="update_ui" from="Tint/SideCharacter" to="UI" method="_on_side_character_update_ui"]

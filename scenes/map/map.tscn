@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceij00tvw8spw"]
+
+[ext_resource type="Texture2D" uid="uid://c2y6kn718qxpd" path="res://sprites/map/maptest.png" id="1_0a1g0"]
+[ext_resource type="Script" path="res://scenes/map/map.gd" id="1_c00qd"]
+[ext_resource type="Script" path="res://scripts/menu_button.gd" id="1_pq548"]
+[ext_resource type="Texture2D" uid="uid://c6p02bsnknatj" path="res://sprites/map/cursor.png" id="4_b7qdr"]
+
+[node name="Map" type="Node2D" node_paths=PackedStringArray("current_button")]
+script = ExtResource("1_c00qd")
+current_button = NodePath("LocationsDeploy/StructureTownReclaimed")
+
+[node name="LocationsDeploy" type="Node2D" parent="."]
+
+[node name="StructureTownReclaimed" type="Node2D" parent="LocationsDeploy" node_paths=PackedStringArray("up", "down", "left", "right")]
+position = Vector2(176, 170)
+script = ExtResource("1_pq548")
+up = NodePath("../StructureBaseReclaimed")
+down = NodePath("../StructureBaseReclaimed")
+left = NodePath("../StructureBaseReclaimed")
+right = NodePath("../StructureBaseReclaimed")
+
+[node name="StructureBaseReclaimed" type="Node2D" parent="LocationsDeploy" node_paths=PackedStringArray("up", "down", "left", "right")]
+position = Vector2(230, 217)
+script = ExtResource("1_pq548")
+up = NodePath("../StructureTownReclaimed")
+down = NodePath("../StructureTownReclaimed")
+left = NodePath("../StructureTownReclaimed")
+right = NodePath("../StructureTownReclaimed")
+
+[node name="LocationsTarget" type="Node2D" parent="."]
+
+[node name="StructureTownOccupied" type="Node2D" parent="LocationsTarget" node_paths=PackedStringArray("up", "down", "left", "right")]
+position = Vector2(312, 190)
+script = ExtResource("1_pq548")
+up = NodePath("../StructureBaseOccupied")
+down = NodePath("../StructureBaseOccupied")
+left = NodePath("../StructureBaseOccupied")
+right = NodePath("../StructureBaseOccupied")
+
+[node name="StructureBaseOccupied" type="Node2D" parent="LocationsTarget" node_paths=PackedStringArray("up", "down", "left", "right")]
+position = Vector2(276, 152)
+script = ExtResource("1_pq548")
+up = NodePath("../StructureTownOccupied")
+down = NodePath("../StructureTownOccupied")
+left = NodePath("../StructureTownOccupied")
+right = NodePath("../StructureTownOccupied")
+
+[node name="SpriteTest" type="Sprite2D" parent="."]
+texture = ExtResource("1_0a1g0")
+centered = false
+
+[node name="Cursor" type="Node2D" parent="."]
+position = Vector2(176, 170)
+
+[node name="Sprite" type="Sprite2D" parent="Cursor"]
+modulate = Color(1, 1, 1, 0.588235)
+position = Vector2(-22, 22)
+texture = ExtResource("4_b7qdr")
+flip_h = true

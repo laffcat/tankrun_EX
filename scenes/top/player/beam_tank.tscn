@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://j6pmbhtu0yqi"]
+
+[ext_resource type="Script" path="res://scripts/top/player/beam_tank.gd" id="1_jvcv8"]
+[ext_resource type="Texture2D" uid="uid://sa53wq1i5vpd" path="res://sprites/topdown/player/tank_beam.png" id="2_3hcnf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nad8y"]
+radius = 16.0
+
+[node name="BulletTank" type="Node2D"]
+script = ExtResource("1_jvcv8")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(2, 0)
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = -0.00108774
+shape = SubResource("CircleShape2D_nad8y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3hcnf")
+offset = Vector2(-2.5, 0)
+hframes = 5
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

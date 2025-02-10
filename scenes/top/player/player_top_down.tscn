@@ -1,0 +1,89 @@
+[gd_scene load_steps=15 format=3 uid="uid://dj2w2e4oam4c6"]
+
+[ext_resource type="Texture2D" uid="uid://dmedey8tqi6pr" path="res://sprites/topdown/player/tank_base.png" id="1_cm6mw"]
+[ext_resource type="Script" path="res://scripts/top/player/player_top.gd" id="1_lgi77"]
+[ext_resource type="AudioStream" uid="uid://dua74jar08h0b" path="res://sounds/SFX/TANK_SFX/sfx_shot_1.wav" id="2_4mbfn"]
+[ext_resource type="Texture2D" uid="uid://c1pdyumyh4jxy" path="res://sprites/topdown/player/tank_top2.png" id="2_boecl"]
+[ext_resource type="Texture2D" uid="uid://bgslk3o2chisa" path="res://sprites/topdown/player/tank_top1.png" id="3_de8fb"]
+[ext_resource type="AudioStream" uid="uid://i3dcdqrr6jac" path="res://sounds/SFX/TANK_SFX/sfx_shot_2.wav" id="3_o32cr"]
+[ext_resource type="AudioStream" uid="uid://bxi6clb18kyu8" path="res://sounds/SFX/TANK_SFX/sfx_shot_3.wav" id="4_wdu0x"]
+[ext_resource type="AudioStream" uid="uid://clpvsr256t7tp" path="res://sounds/SFX/TANK_SFX/sfx_lasercanon_charge.wav" id="6_436qk"]
+[ext_resource type="AudioStream" uid="uid://ccxrxsg8tro2o" path="res://sounds/SFX/sfx_hurt.tres" id="6_sv0xb"]
+[ext_resource type="AudioStream" uid="uid://dnp6272wj8n1l" path="res://sounds/SFX/TANK_SFX/sfx_lasercanon_shot.wav" id="7_sd4cw"]
+[ext_resource type="AudioStream" uid="uid://cs4wyal0s8oe6" path="res://sounds/SFX/TANK_SFX/sfx_gameover.wav" id="8_ibi7r"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vsldx"]
+random_pitch = 1.06
+streams_count = 3
+stream_0/stream = ExtResource("2_4mbfn")
+stream_1/stream = ExtResource("3_o32cr")
+stream_2/stream = ExtResource("4_wdu0x")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k116f"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t6qry"]
+radius = 9.0
+
+[node name="PlayerTopDown" type="CharacterBody2D"]
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_lgi77")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="ShootBasic" type="AudioStreamPlayer" parent="SFX"]
+stream = SubResource("AudioStreamRandomizer_vsldx")
+volume_db = 2.094
+mix_target = 2
+playback_type = 2
+
+[node name="ShootBeamCharge" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("6_436qk")
+
+[node name="ShootBeamFire" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("7_sd4cw")
+pitch_scale = 1.2
+
+[node name="Hurt" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("6_sv0xb")
+pitch_scale = 0.79
+
+[node name="GameOver" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("8_ibi7r")
+volume_db = -8.803
+
+[node name="SprTankBase" type="Sprite2D" parent="."]
+scale = Vector2(0.666, 0.666)
+texture = ExtResource("1_cm6mw")
+hframes = 3
+
+[node name="TankTop" type="Node2D" parent="."]
+scale = Vector2(0.666, 0.666)
+
+[node name="SprTankBarrel" type="Sprite2D" parent="TankTop"]
+position = Vector2(15, 0)
+texture = ExtResource("2_boecl")
+hframes = 3
+
+[node name="SprTankHead" type="Sprite2D" parent="TankTop"]
+texture = ExtResource("3_de8fb")
+offset = Vector2(0.5, 0)
+hframes = 3
+
+[node name="BulletSpawn" type="Node2D" parent="TankTop"]
+position = Vector2(25.5255, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k116f")
+
+[node name="AreaHurt" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaHurt"]
+shape = SubResource("CircleShape2D_t6qry")
+debug_color = Color(0.859312, 0.282512, 0.58466, 0.42)
+
+[connection signal="body_entered" from="AreaHurt" to="." method="_on_area_hurt_body_entered"]

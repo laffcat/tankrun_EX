@@ -1,0 +1,279 @@
+[gd_scene load_steps=38 format=4 uid="uid://cdu14b4vpdt3x"]
+
+[ext_resource type="Script" path="res://scenes/top/game_topdown.gd" id="1_35ae2"]
+[ext_resource type="Texture2D" uid="uid://dtxm4kmfhn5w6" path="res://sprites/cursor.png" id="1_s8r8c"]
+[ext_resource type="Script" path="res://scripts/cursor.gd" id="1_vkqsu"]
+[ext_resource type="PackedScene" uid="uid://dj2w2e4oam4c6" path="res://scenes/top/player/player_top_down.tscn" id="2_pi1rp"]
+[ext_resource type="Texture2D" uid="uid://bjgg314c0noh6" path="res://sprites/menu/paused.png" id="4_4100a"]
+[ext_resource type="Script" path="res://scripts/top/camera.gd" id="4_tpic3"]
+[ext_resource type="Texture2D" uid="uid://de7rn0rr041v" path="res://sprites/menu/game_over.png" id="5_ary8n"]
+[ext_resource type="Texture2D" uid="uid://dh1itn3ng1btw" path="res://sprites/hud/hp_label.png" id="5_e6jtb"]
+[ext_resource type="Texture2D" uid="uid://c27lis8oc1ee7" path="res://sprites/hud/numbers.png" id="5_je4rd"]
+[ext_resource type="PackedScene" uid="uid://cfleh6e3k6uei" path="res://scenes/top/grass.tscn" id="5_kbk52"]
+[ext_resource type="Script" path="res://scripts/top/menu_game_over.gd" id="5_npheh"]
+[ext_resource type="Shader" path="res://shaders/dither_fade.gdshader" id="6_6ylul"]
+[ext_resource type="Texture2D" uid="uid://do2xj7p51ih5m" path="res://sprites/hud/pts.png" id="6_j2lxq"]
+[ext_resource type="Texture2D" uid="uid://boehd7fjg826k" path="res://sprites/hud/hp.png" id="6_unjmp"]
+[ext_resource type="Script" path="res://scripts/misc/score_display.gd" id="6_v81ok"]
+[ext_resource type="Texture2D" uid="uid://dxl7kp6ue7cwe" path="res://sprites/hud/arrow.png" id="6_ytb75"]
+[ext_resource type="Texture2D" uid="uid://sh8bh6dfsedx" path="res://sprites/menu/pause_options.png" id="7_7vilc"]
+[ext_resource type="Texture2D" uid="uid://dhdb5fvt2gun3" path="res://shaders/static_tenth_scr.png" id="7_20e2q"]
+[ext_resource type="Texture2D" uid="uid://b6apuh562x737" path="res://sprites/hud/mouse.png" id="7_f2oc6"]
+[ext_resource type="Script" path="res://scripts/top/menu_pause.gd" id="7_sqj87"]
+[ext_resource type="Script" path="res://scenes/top/spawner_point.gd" id="8_05q0r"]
+[ext_resource type="Script" path="res://scenes/top/bunker_arrow.gd" id="8_24mvd"]
+[ext_resource type="Shader" path="res://shaders/cooldown_progress.gdshader" id="8_436t0"]
+[ext_resource type="Texture2D" uid="uid://det3jsvylumql" path="res://sprites/menu/arrow.png" id="8_ry484"]
+[ext_resource type="Texture2D" uid="uid://dlhhf17w4k5a2" path="res://sprites/hud/mouse_button.png" id="9_nf3iw"]
+[ext_resource type="Texture2D" uid="uid://b2kq1sgavs1ok" path="res://sprites/hud/mouse_icon_m1.png" id="10_mds26"]
+[ext_resource type="Texture2D" uid="uid://r68i0ryfx73s" path="res://sprites/hud/mouse_icon_m2.png" id="11_tu6re"]
+[ext_resource type="Script" path="res://scripts/misc/score_display_high.gd" id="17_auqwo"]
+[ext_resource type="Texture2D" uid="uid://c0u0mvafhoe5c" path="res://sprites/hud/highscore.png" id="18_6p6wm"]
+[ext_resource type="Texture2D" uid="uid://dixtic5ga0gkg" path="res://sprites/hud/NEW.PNG" id="19_bk8aj"]
+[ext_resource type="Texture2D" uid="uid://d2p3ree4ks111" path="res://sprites/hud/exclamationpoint.png" id="20_pgpo4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sshbh"]
+shader = ExtResource("6_6ylul")
+shader_parameter/static_mult = 0.5
+shader_parameter/threshold = -2.0
+shader_parameter/static = ExtResource("7_20e2q")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pnos3"]
+texture = ExtResource("5_je4rd")
+texture_region_size = Vector2i(20, 24)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_r6cwl"]
+tile_size = Vector2i(20, 24)
+sources/0 = SubResource("TileSetAtlasSource_pnos3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lh081"]
+shader = ExtResource("8_436t0")
+shader_parameter/clr = Color(0.843137, 0.14902, 0.219608, 1)
+shader_parameter/progress = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2w2gb"]
+shader = ExtResource("8_436t0")
+shader_parameter/clr = Color(0.843137, 0.14902, 0.219608, 1)
+shader_parameter/progress = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ml34"]
+size = Vector2(512, 352)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_35ae2")
+
+[node name="Grass" type="Node2D" parent="."]
+
+[node name="TileMapLayer" parent="Grass" instance=ExtResource("5_kbk52")]
+
+[node name="TileMapLayer10" parent="Grass" instance=ExtResource("5_kbk52")]
+position = Vector2(-960, -640)
+
+[node name="TileMapLayer11" parent="Grass" instance=ExtResource("5_kbk52")]
+position = Vector2(-960, -320)
+
+[node name="TileMapLayer12" parent="Grass" instance=ExtResource("5_kbk52")]
+position = Vector2(-960, 0)
+
+[node name="TileMapLayer13" parent="Grass" instance=ExtResource("5_kbk52")]
+position = Vector2(-960, 320)
+
+[node name="TileMapLayer14" parent="Grass" instance=ExtResource("5_kbk52")]
+position = Vector2(-480, -640)
+
+[node name="TileMapLayer15" parent="Grass" instance=ExtResource("5_kbk52")]
+position = Vector2(0, -640)
+
+[node name="TileMapLayer16" parent="Grass" instance=ExtResource("5_kbk52")]
+position = Vector2(480, -640)
+
+[node name="TileMapLayer2" parent="Grass" instance=ExtResource("5_kbk52")]
+position = Vector2(-480, 0)
+
+[node name="TileMapLayer3" parent="Grass" instance=ExtResource("5_kbk52")]
+position = Vector2(0, -320)
+
+[node name="TileMapLayer4" parent="Grass" instance=ExtResource("5_kbk52")]
+position = Vector2(-480, -320)
+
+[node name="TileMapLayer5" parent="Grass" instance=ExtResource("5_kbk52")]
+position = Vector2(0, 320)
+
+[node name="TileMapLayer7" parent="Grass" instance=ExtResource("5_kbk52")]
+position = Vector2(480, 0)
+
+[node name="TileMapLayer8" parent="Grass" instance=ExtResource("5_kbk52")]
+position = Vector2(480, -320)
+
+[node name="TileMapLayer9" parent="Grass" instance=ExtResource("5_kbk52")]
+position = Vector2(480, 320)
+
+[node name="TileMapLayer6" parent="Grass" instance=ExtResource("5_kbk52")]
+position = Vector2(-480, 320)
+
+[node name="EnemyRoot" type="Node2D" parent="."]
+
+[node name="PlayerTopDown" parent="." instance=ExtResource("2_pi1rp")]
+
+[node name="Camera2D" type="Camera2D" parent="PlayerTopDown"]
+script = ExtResource("4_tpic3")
+
+[node name="HUD" type="Node2D" parent="PlayerTopDown/Camera2D"]
+
+[node name="BunkerArrow" type="Sprite2D" parent="PlayerTopDown/Camera2D/HUD"]
+visible = false
+material = SubResource("ShaderMaterial_sshbh")
+position = Vector2(-95, 34)
+texture = ExtResource("6_ytb75")
+script = ExtResource("8_24mvd")
+
+[node name="ScoreDisplay" type="TileMapLayer" parent="PlayerTopDown/Camera2D/HUD"]
+position = Vector2(160, -138)
+tile_map_data = PackedByteArray("AAD+////AAAAAAAAAAD9////AAAAAAAAAAD8////AAAAAAAAAAD7////AAAAAAAAAAD6////AAAAAAAAAAD5////AAAAAAAAAAD4////AAAAAAAAAAD/////AAAAAAAAAAD3////AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_r6cwl")
+script = ExtResource("6_v81ok")
+
+[node name="Pts" type="Sprite2D" parent="PlayerTopDown/Camera2D/HUD/ScoreDisplay"]
+position = Vector2(38, -16)
+texture = ExtResource("6_j2lxq")
+
+[node name="HpLabel" type="Sprite2D" parent="PlayerTopDown/Camera2D/HUD"]
+position = Vector2(-198, 153)
+texture = ExtResource("5_e6jtb")
+
+[node name="Hp1" type="Sprite2D" parent="PlayerTopDown/Camera2D/HUD"]
+position = Vector2(-168, 158)
+texture = ExtResource("6_unjmp")
+hframes = 2
+
+[node name="Hp2" type="Sprite2D" parent="PlayerTopDown/Camera2D/HUD"]
+position = Vector2(-152, 150)
+texture = ExtResource("6_unjmp")
+hframes = 2
+
+[node name="Hp3" type="Sprite2D" parent="PlayerTopDown/Camera2D/HUD"]
+position = Vector2(-136, 158)
+texture = ExtResource("6_unjmp")
+hframes = 2
+
+[node name="Hp4" type="Sprite2D" parent="PlayerTopDown/Camera2D/HUD"]
+position = Vector2(-120, 150)
+texture = ExtResource("6_unjmp")
+hframes = 2
+
+[node name="Hp5" type="Sprite2D" parent="PlayerTopDown/Camera2D/HUD"]
+position = Vector2(-104, 158)
+texture = ExtResource("6_unjmp")
+hframes = 2
+
+[node name="Mouse" type="Sprite2D" parent="PlayerTopDown/Camera2D/HUD"]
+position = Vector2(173, 143)
+texture = ExtResource("7_f2oc6")
+
+[node name="MouseButton1" type="Sprite2D" parent="PlayerTopDown/Camera2D/HUD"]
+material = SubResource("ShaderMaterial_lh081")
+position = Vector2(164, 138)
+texture = ExtResource("9_nf3iw")
+
+[node name="MouseButton2" type="Sprite2D" parent="PlayerTopDown/Camera2D/HUD"]
+material = SubResource("ShaderMaterial_2w2gb")
+position = Vector2(182, 138)
+texture = ExtResource("9_nf3iw")
+flip_h = true
+
+[node name="MouseIconM1" type="Sprite2D" parent="PlayerTopDown/Camera2D/HUD"]
+position = Vector2(165, 138)
+texture = ExtResource("10_mds26")
+
+[node name="MouseIconM2" type="Sprite2D" parent="PlayerTopDown/Camera2D/HUD"]
+position = Vector2(181, 138)
+texture = ExtResource("11_tu6re")
+
+[node name="MenuGameOver" type="Node2D" parent="PlayerTopDown/Camera2D"]
+visible = false
+position = Vector2(0, -18)
+script = ExtResource("5_npheh")
+
+[node name="GameOver" type="Sprite2D" parent="PlayerTopDown/Camera2D/MenuGameOver"]
+position = Vector2(-133, -91)
+texture = ExtResource("5_ary8n")
+
+[node name="ScoreDisplayHigh" type="TileMapLayer" parent="PlayerTopDown/Camera2D/MenuGameOver"]
+position = Vector2(168, -88)
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_r6cwl")
+script = ExtResource("17_auqwo")
+color_lame = Color(0.956863, 0.376471, 0.211765, 1)
+color_cool = Color(1, 0.823529, 0.247059, 1)
+
+[node name="Highscore" type="Sprite2D" parent="PlayerTopDown/Camera2D/MenuGameOver/ScoreDisplayHigh"]
+position = Vector2(-8, 12.5)
+texture = ExtResource("18_6p6wm")
+
+[node name="New" type="Sprite2D" parent="PlayerTopDown/Camera2D/MenuGameOver/ScoreDisplayHigh"]
+visible = false
+position = Vector2(-83, 20.5)
+texture = ExtResource("19_bk8aj")
+
+[node name="Exclamationpoint" type="Sprite2D" parent="PlayerTopDown/Camera2D/MenuGameOver/ScoreDisplayHigh"]
+visible = false
+position = Vector2(50, 0.5)
+texture = ExtResource("20_pgpo4")
+
+[node name="MenuPause" type="Node2D" parent="PlayerTopDown/Camera2D"]
+visible = false
+script = ExtResource("7_sqj87")
+
+[node name="Paused" type="Sprite2D" parent="PlayerTopDown/Camera2D/MenuPause"]
+z_index = 100
+position = Vector2(0, -112)
+texture = ExtResource("4_4100a")
+
+[node name="PauseOptions" type="Sprite2D" parent="PlayerTopDown/Camera2D/MenuPause"]
+position = Vector2(0, 96)
+texture = ExtResource("7_7vilc")
+
+[node name="Arrow" type="Sprite2D" parent="PlayerTopDown/Camera2D/MenuPause/PauseOptions"]
+position = Vector2(-40, -8)
+texture = ExtResource("8_ry484")
+offset = Vector2(-34, 3)
+
+[node name="Reset" type="Node2D" parent="PlayerTopDown/Camera2D/MenuPause/PauseOptions"]
+position = Vector2(-40, -8)
+
+[node name="Exit" type="Node2D" parent="PlayerTopDown/Camera2D/MenuPause/PauseOptions"]
+position = Vector2(-24, 24)
+
+[node name="AreaCamRadius" type="Area2D" parent="PlayerTopDown/Camera2D"]
+visible = false
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTopDown/Camera2D/AreaCamRadius"]
+shape = SubResource("RectangleShape2D_5ml34")
+
+[node name="Cursor" type="Sprite2D" parent="PlayerTopDown/Camera2D"]
+z_index = 50
+texture = ExtResource("1_s8r8c")
+script = ExtResource("1_vkqsu")
+
+[node name="SpawnerPivot" type="Node2D" parent="PlayerTopDown/Camera2D"]
+
+[node name="SpawnerPoint" type="Node2D" parent="PlayerTopDown/Camera2D/SpawnerPivot"]
+position = Vector2(416, 0)
+script = ExtResource("8_05q0r")
+
+[connection signal="area_exited" from="PlayerTopDown/Camera2D/AreaCamRadius" to="PlayerTopDown/Camera2D" method="_on_area_cam_radius_area_exited"]
+[connection signal="body_entered" from="PlayerTopDown/Camera2D/AreaCamRadius" to="." method="_on_area_cam_radius_body_entered"]
+[connection signal="body_exited" from="PlayerTopDown/Camera2D/AreaCamRadius" to="." method="_on_area_cam_radius_body_exited"]

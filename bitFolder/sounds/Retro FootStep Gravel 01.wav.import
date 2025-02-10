@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cyw3iw52fw67d"
+path="res://.godot/imported/Retro FootStep Gravel 01.wav-998ad3ce0c49a2f0846bc1859236f477.sample"
+
+[deps]
+
+source_file="res://bitFolder/sounds/Retro FootStep Gravel 01.wav"
+dest_files=["res://.godot/imported/Retro FootStep Gravel 01.wav-998ad3ce0c49a2f0846bc1859236f477.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

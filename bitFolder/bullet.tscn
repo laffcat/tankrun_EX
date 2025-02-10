@@ -1,0 +1,108 @@
+[gd_scene load_steps=16 format=3 uid="uid://cgvyoukdfsd36"]
+
+[ext_resource type="Script" path="res://bitFolder/bullet.gd" id="1_s363k"]
+[ext_resource type="Texture2D" uid="uid://c4frxnr5qf3lu" path="res://sprites/topdown/player/tank_bullet.png" id="2_58ep5"]
+[ext_resource type="Texture2D" uid="uid://b6wdios2u7y5r" path="res://bitFolder/Assets/SmokeFX/Free Smoke Fx  Pixel 05.png" id="3_l5dd1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nad8y"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8jsn"]
+atlas = ExtResource("3_l5dd1")
+region = Rect2(0, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o26xy"]
+atlas = ExtResource("3_l5dd1")
+region = Rect2(64, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnb3m"]
+atlas = ExtResource("3_l5dd1")
+region = Rect2(128, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fklkm"]
+atlas = ExtResource("3_l5dd1")
+region = Rect2(192, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu057"]
+atlas = ExtResource("3_l5dd1")
+region = Rect2(256, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4po8x"]
+atlas = ExtResource("3_l5dd1")
+region = Rect2(320, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6l4r"]
+atlas = ExtResource("3_l5dd1")
+region = Rect2(384, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jqsg"]
+atlas = ExtResource("3_l5dd1")
+region = Rect2(448, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqs3o"]
+atlas = ExtResource("3_l5dd1")
+region = Rect2(512, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snhxl"]
+atlas = ExtResource("3_l5dd1")
+region = Rect2(576, 384, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7tcns"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8jsn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o26xy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cnb3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fklkm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu057")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4po8x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6l4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jqsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqs3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snhxl")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_s363k")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(6, 0)
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_nad8y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_58ep5")
+offset = Vector2(-2.5, 0)
+
+[node name="AnimatedSmoke" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(7, 0)
+sprite_frames = SubResource("SpriteFrames_7tcns")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

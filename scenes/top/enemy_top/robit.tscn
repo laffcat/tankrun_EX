@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm61wxbwhwlhv"]
+
+[ext_resource type="Script" path="res://scripts/top/enemy/_enemy.gd" id="1_j2ypj"]
+[ext_resource type="Texture2D" uid="uid://bfrkh7bhg0mf" path="res://sprites/topdown/enemy/robit.png" id="2_hbyru"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5pe4o"]
+radius = 6.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_j2ypj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_hbyru")
+offset = Vector2(2, 0)
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5pe4o")

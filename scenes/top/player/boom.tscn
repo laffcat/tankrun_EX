@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://2fa7464rxlun"]
+
+[ext_resource type="Script" path="res://scenes/top/player/boom.gd" id="1_cbe50"]
+[ext_resource type="ArrayMesh" uid="uid://d351howe4kstl" path="res://sprites/mesh_circle.obj" id="3_l3yyc"]
+[ext_resource type="AudioStream" uid="uid://ccxrxsg8tro2o" path="res://sounds/SFX/sfx_hurt.tres" id="3_owtcp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l377g"]
+radius = 15.5242
+
+[node name="boom" type="Node2D"]
+script = ExtResource("1_cbe50")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(11, 11)
+mesh = ExtResource("3_l3yyc")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_l377g")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_owtcp")
+volume_db = 2.094
+autoplay = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

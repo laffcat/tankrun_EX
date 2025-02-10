@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg4p3ab452gmx"]
+
+[ext_resource type="Texture2D" uid="uid://cdr46vvn41jxl" path="res://sprites/topdown/world/bunker.png" id="1_5p6il"]
+[ext_resource type="Script" path="res://scripts/top/bunker.gd" id="1_a51gi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jgk1v"]
+radius = 11.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p2moe"]
+radius = 19.0
+
+[node name="Bunker" type="Node2D"]
+script = ExtResource("1_a51gi")
+
+[node name="Bunker" type="Sprite2D" parent="."]
+texture = ExtResource("1_5p6il")
+hframes = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_jgk1v")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_p2moe")
+debug_color = Color(0.821171, 0.296971, 0.68802, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

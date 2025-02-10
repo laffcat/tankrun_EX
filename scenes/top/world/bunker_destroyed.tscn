@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsow3umyo1fgq"]
+
+[ext_resource type="Script" path="res://scenes/top/world/bunker_destroyed.gd" id="1_kmncm"]
+[ext_resource type="Texture2D" uid="uid://cdr46vvn41jxl" path="res://sprites/topdown/world/bunker.png" id="2_ss4su"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jgk1v"]
+radius = 11.0
+
+[node name="Bunker" type="Node2D"]
+script = ExtResource("1_kmncm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 6
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_jgk1v")
+
+[node name="Bunker" type="Sprite2D" parent="."]
+texture = ExtResource("2_ss4su")
+hframes = 2
+frame = 1

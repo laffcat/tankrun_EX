@@ -1,0 +1,92 @@
+[gd_scene load_steps=14 format=3 uid="uid://bigmffbu3smfx"]
+
+[ext_resource type="Script" path="res://bitFolder/side_view_world.gd" id="1_ugeb5"]
+[ext_resource type="PackedScene" uid="uid://blqnbweumcaup" path="res://bitFolder/LevelParts/tile_map_layer0.tscn" id="2_nvwtj"]
+[ext_resource type="PackedScene" uid="uid://bc08gr3ma0glj" path="res://bitFolder/side_character.tscn" id="2_p530g"]
+[ext_resource type="PackedScene" uid="uid://dpcewk0b7kxjt" path="res://bitFolder/LevelParts/tile_map_end.tscn" id="2_wnlaq"]
+[ext_resource type="PackedScene" uid="uid://ibb6ln7ea215" path="res://bitFolder/spawner_new.tscn" id="3_jsjbd"]
+[ext_resource type="PackedScene" uid="uid://ds81kwvvoaahf" path="res://bitFolder/LevelParts/tile_map1.tscn" id="3_v1eu6"]
+[ext_resource type="PackedScene" uid="uid://vyxg8q6h3cbb" path="res://bitFolder/LevelParts/tile_map2.tscn" id="4_4pial"]
+[ext_resource type="PackedScene" uid="uid://bkn8idh1nrk0l" path="res://bitFolder/ui.tscn" id="4_rphau"]
+[ext_resource type="PackedScene" uid="uid://cvs4br64et2ux" path="res://bitFolder/LevelParts/tile_map3.tscn" id="5_bbm4j"]
+[ext_resource type="PackedScene" uid="uid://d21he68618l4" path="res://bitFolder/LevelParts/tile_map4.tscn" id="6_yh5m4"]
+[ext_resource type="PackedScene" uid="uid://b8dvlshdnxaui" path="res://bitFolder/LevelParts/tile_map5.tscn" id="7_8e8li"]
+[ext_resource type="PackedScene" uid="uid://c7qtunqn5jhkm" path="res://bitFolder/LevelParts/tile_map6.tscn" id="8_37e5d"]
+[ext_resource type="PackedScene" uid="uid://batr75htqatpe" path="res://bitFolder/skely.tscn" id="12_74yj3"]
+
+[node name="SideViewWorld" type="Node2D"]
+script = ExtResource("1_ugeb5")
+
+[node name="Tint" type="Node2D" parent="."]
+
+[node name="TileMapEnd" parent="Tint" instance=ExtResource("2_wnlaq")]
+position = Vector2(-1432, 0)
+
+[node name="TileDepo" type="Node2D" parent="Tint"]
+position = Vector2(-912, 0)
+
+[node name="TileMapLayer2" parent="Tint/TileDepo" instance=ExtResource("3_v1eu6")]
+
+[node name="TileMapLayer1" parent="Tint/TileDepo" instance=ExtResource("4_4pial")]
+
+[node name="TileMapLayer3" parent="Tint/TileDepo" instance=ExtResource("5_bbm4j")]
+
+[node name="TileMapLayer4" parent="Tint/TileDepo" instance=ExtResource("6_yh5m4")]
+
+[node name="TileMapLayer5" parent="Tint/TileDepo" instance=ExtResource("7_8e8li")]
+
+[node name="TileMapLayer6" parent="Tint/TileDepo" instance=ExtResource("8_37e5d")]
+
+[node name="TileMaps" type="Node2D" parent="Tint"]
+
+[node name="TileMapLayer" parent="Tint/TileMaps" instance=ExtResource("2_nvwtj")]
+
+[node name="SideCharacter" parent="Tint" instance=ExtResource("2_p530g")]
+position = Vector2(22, 158)
+
+[node name="Camera2D" type="Camera2D" parent="Tint/SideCharacter"]
+limit_top = -400
+limit_bottom = 200
+
+[node name="SpawnerGroup" type="Node2D" parent="Tint"]
+
+[node name="Spawner" parent="Tint/SpawnerGroup" instance=ExtResource("3_jsjbd")]
+position = Vector2(240, 152)
+
+[node name="Spawner2" parent="Tint/SpawnerGroup" instance=ExtResource("3_jsjbd")]
+position = Vector2(240, 120)
+
+[node name="Spawner3" parent="Tint/SpawnerGroup" instance=ExtResource("3_jsjbd")]
+position = Vector2(240, 88)
+
+[node name="Spawner4" parent="Tint/SpawnerGroup" instance=ExtResource("3_jsjbd")]
+position = Vector2(240, 56)
+
+[node name="Spawner5" parent="Tint/SpawnerGroup" instance=ExtResource("3_jsjbd")]
+position = Vector2(240, 24)
+
+[node name="Spawner6" parent="Tint/SpawnerGroup" instance=ExtResource("3_jsjbd")]
+position = Vector2(240, -8)
+
+[node name="Spawner7" parent="Tint/SpawnerGroup" instance=ExtResource("3_jsjbd")]
+position = Vector2(240, -40)
+
+[node name="Spawner8" parent="Tint/SpawnerGroup" instance=ExtResource("3_jsjbd")]
+position = Vector2(320, 152)
+
+[node name="Spawner9" parent="Tint/SpawnerGroup" instance=ExtResource("3_jsjbd")]
+position = Vector2(368, 152)
+
+[node name="Spawner11" parent="Tint/SpawnerGroup" instance=ExtResource("3_jsjbd")]
+position = Vector2(456, 152)
+
+[node name="Spawner10" parent="Tint/SpawnerGroup" instance=ExtResource("3_jsjbd")]
+position = Vector2(320, 120)
+
+[node name="CharacterBody2D" parent="Tint" instance=ExtResource("12_74yj3")]
+position = Vector2(-160, 64)
+
+[node name="UI" parent="." instance=ExtResource("4_rphau")]
+visible = false
+
+[connection signal="update_ui" from="Tint/SideCharacter" to="UI" method="_on_side_character_update_ui"]
